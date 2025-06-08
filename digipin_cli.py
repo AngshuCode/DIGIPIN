@@ -1,5 +1,5 @@
 import math
-import argparse
+import sys # Import sys for exiting the program
 
 # DIGIPIN Encoder and Decoder Library
 # Developed by India Post, Department of Posts
@@ -144,46 +144,58 @@ def get_lat_lng_from_digi_pin(digi_pin: str) -> dict:
         'longitude': f"{center_lon:.6f}"
     }
 
+def display_menu():
+    """Displays the main menu options to the user."""
+    print("\n--- India DIGIPIN Tool ---")
+    print("1. Encode Latitude and Longitude to DIGIPIN")
+    print("2. Decode DIGIPIN to Latitude and Longitude")
+    print("3. Exit")
+    print("----------------------------")
+
+def run_encoder():
+    """Handles the encoding process, taking user input for latitude and longitude."""
+    try:
+        latitude_str = input("Enter Latitude (e.g., 28.622788): ")
+        longitude_str = input("Enter Longitude (e.g., 77.213033): ")
+
+        latitude = float(latitude_str)
+        longitude = float(longitude_str)
+
+        digipin_code = get_digipin(latitude, longitude)
+        print(f"\nResulting DIGIPIN: {digipin_code}")
+    except ValueError as e:
+        print(f"Error: Invalid input. {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred during encoding: {e}")
+
+def run_decoder():
+    """Handles the decoding process, taking user input for a DIGIPIN."""
+    try:
+        digipin_input = input("Enter DIGIPIN (e.g., '39J-49L-L8T4' or '39J49LL8T4'): ")
+        coords = get_lat_lng_from_digi_pin(digipin_input)
+        print(f"\nDecoded Latitude: {coords['latitude']}")
+        print(f"Decoded Longitude: {coords['longitude']}")
+    except ValueError as e:
+        print(f"Error: Invalid input. {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred during decoding: {e}")
+
 def main():
-    parser = argparse.ArgumentParser(
-        description="DIGIPIN Encoder and Decoder CLI Tool",
-        formatter_class=argparse.RawTextHelpFormatter # Preserve newlines in help
-    )
+    """Main function to run the interactive DIGIPIN tool."""
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1, 2, or 3): ").strip()
 
-    # Create subparsers for 'encode' and 'decode' commands
-    subparsers = parser.add_subparsers(dest='command', required=True, help='Available commands')
-
-    # --- Encode Subparser ---
-    encode_parser = subparsers.add_parser('encode', help='Encode latitude and longitude to a DIGIPIN.')
-    encode_parser.add_argument('latitude', type=float, 
-                               help='The latitude (e.g., 28.622788).')
-    encode_parser.add_argument('longitude', type=float, 
-                               help='The longitude (e.g., 77.213033).')
-
-    # --- Decode Subparser ---
-    decode_parser = subparsers.add_parser('decode', help='Decode a DIGIPIN to latitude and longitude.')
-    decode_parser.add_argument('digipin', type=str, 
-                               help='The 10-character DIGIPIN code (e.g., "39J-49L-L8T4" or "39J49LL8T4").')
-
-    args = parser.parse_args()
-
-    if args.command == 'encode':
-        try:
-            digipin_code = get_digipin(args.latitude, args.longitude)
-            print(f"DIGIPIN: {digipin_code}")
-        except ValueError as e:
-            print(f"Error: {e}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
-    elif args.command == 'decode':
-        try:
-            coords = get_lat_lng_from_digi_pin(args.digipin)
-            print(f"Latitude: {coords['latitude']}")
-            print(f"Longitude: {coords['longitude']}")
-        except ValueError as e:
-            print(f"Error: {e}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
+        if choice == '1':
+            run_encoder()
+        elif choice == '2':
+            run_decoder()
+        elif choice == '3':
+            print("Exiting India DIGIPIN Tool. Goodbye!")
+            sys.exit(0) # Exit the program
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
 
 if __name__ == "__main__":
     main()
+
