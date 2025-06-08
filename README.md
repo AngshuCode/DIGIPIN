@@ -41,57 +41,40 @@ cd DIGIPIN
 
 You can run the `digipin_cli.py` script directly from your terminal.
 
-### Getting Help
-
-To see the available commands and options:
-
-```bash
-python digipin_cli.py --help
+```--- India DIGIPIN Tool ---
+1. Encode Latitude and Longitude to DIGIPIN
+2. Decode DIGIPIN to Latitude and Longitude
+3. Exit
+----------------------------
+Enter your choice (1, 2, or 3):
 ```
+Enter the number corresponding to your desired action and press Enter.
+Encoding Coordinates to DIGIPIN
+ * From the main menu, enter 1.
+ * The tool will prompt you for the Latitude and Longitude.
+   * Example Latitude: 28.622788 (for Dak Bhawan)
+   * Example Longitude: 77.213033 (for Dak Bhawan)
+   Enter your choice (1, 2, or 3): 1
+Enter Latitude (e.g., 28.622788): 28.622788
+Enter Longitude (e.g., 77.213033): 77.213033
 
-For help on specific commands:
+Resulting DIGIPIN: 39J-49L-L8T4
 
-```bash
-python digipin_cli.py encode --help
-python digipin_cli.py decode --help
-```
+Decoding a DIGIPIN to Coordinates
+ * From the main menu, enter 2.
+ * The tool will prompt you for the DIGIPIN code. You can enter the code with or without hyphens.
+   * Example DIGIPIN: 39J-49L-L8T4 or 39J49LL8T4
+   Enter your choice (1, 2, or 3): 2
+Enter DIGIPIN (e.g., '39J-49L-L8T4' or '39J49LL8T4'): 39J-49L-L8T4
 
-### Encoding Coordinates to DIGIPIN
+Decoded Latitude: 28.622788
+Decoded Longitude: 77.213033
 
-Use the `encode` command followed by the latitude and longitude.
+Exiting the Tool
+ * From the main menu, enter 3.
+   Enter your choice (1, 2, or 3): 3
+Exiting India DIGIPIN Tool. Goodbye!
 
-**Example:** Encoding coordinates for Dak Bhawan (28.622788°N, 77.213033°E)
-
-```bash
-python digipin_cli.py encode 28.622788 77.213033
-```
-
-**Output:**
-```
-DIGIPIN: 39J-49L-L8T4
-```
-
-### Decoding a DIGIPIN to Coordinates
-
-Use the `decode` command followed by the DIGIPIN code. You can use the code with or without hyphens.
-
-**Example:** Decoding the DIGIPIN for Dak Bhawan
-
-```bash
-python digipin_cli.py decode 39J-49L-L8T4
-```
-
-**Output:**
-```
-Latitude: 28.622788
-Longitude: 77.213033
-```
-
-Alternatively, without hyphens:
-
-```bash
-python digipin_cli.py decode 39J49LL8T4
-```
 
 ## 🛠️ How It Works (Core Logic)
 
