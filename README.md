@@ -30,11 +30,10 @@ This specific some code and README.md file were generated with the assistance of
 1. Clone this repository (or simply download the `digipin_cli.py` file):
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/your_repo_name.git
-cd your_repo_name
+git clone https://github.com/AngshuCode/DIGIPIN.git
+cd DIGIPIN
 ```
 
-*(Replace YOUR_USERNAME and your_repo_name with your actual GitHub details.)*
 
 2. No external Python libraries are strictly required beyond standard built-in modules (`math`, `argparse`). Ensure you have Python 3 installed.
 
